@@ -1,0 +1,8 @@
+# This file contains custom mapping, which cannot be resolved by:
+# - reading object property names and
+# - converting them to camel_case
+
+App\SuperMetrics\TokenResponseData:
+    attributes:
+        token:
+            serialized_name: sl_token
