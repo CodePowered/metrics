@@ -1,0 +1,25 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "name": "codepowered/metrics",
+    "description": "Implementation of consuming an API assignment.",
+    "authors": [
+        {
+            "name": "Arturas Sungaila",
+            "email": "codepowered@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    }
+}
