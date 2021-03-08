@@ -9,12 +9,13 @@ use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class Client
+class Api
 {
     private const REGISTER = 'register';
     private const POSTS = 'posts';
 
     private const FORMAT = 'json';
+    private const PAGES = 10;
 
     private static array $headers = [
         'Content-Type' => 'application/json',
@@ -104,5 +105,10 @@ class Client
     private function deserializeResponse(ResponseInterface $response, string $responseType): ResponseEnvelope
     {
         return $this->serializer->deserialize($response->getBody()->getContents(), $responseType, self::FORMAT);
+    }
+
+    public function getPageCount(): int
+    {
+        return self::PAGES;
     }
 }

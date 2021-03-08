@@ -3,7 +3,7 @@
 namespace App\Tests\SuperMetrics;
 
 use App\Provider\Post;
-use App\SuperMetrics\Client;
+use App\SuperMetrics\Api;
 use App\SuperMetrics\GetPostsRequest;
 use App\SuperMetrics\GetPostsResponse;
 use App\SuperMetrics\GetPostsResponseData;
@@ -20,28 +20,28 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
-class ClientTest extends AbstractTest
+class ApiTest extends AbstractTest
 {
     private array $httpTransactions;
 
     public function testRegister(): void
     {
         $httpClient = $this->getHttpClient('register_response.json');
-        $client = $this->getApiClient($httpClient);
+        $api = $this->getApiClient($httpClient);
 
         $request = new TokenRequest('my-id-123456', 'my.email@address.com', 'Nameless');
         $expectedResponse = new TokenResponse(
             new TokenResponseData('my-id-123456', 'my.email@address.com', 'token-371110')
         );
 
-        self::assertEquals($expectedResponse, $client->register($request));
+        self::assertEquals($expectedResponse, $api->register($request));
         $this->assertPostRequest('http://api.host/register', 'register_request.json');
     }
 
     public function testGetPosts(): void
     {
         $httpClient = $this->getHttpClient('posts_response_mini.json');
-        $client = $this->getApiClient($httpClient);
+        $api = $this->getApiClient($httpClient);
 
         $request = new GetPostsRequest('token-371110', 5);
         $expectedResponse = new GetPostsResponse(
@@ -67,13 +67,19 @@ class ClientTest extends AbstractTest
             ])
         );
 
-        self::assertEquals($expectedResponse, $client->getPosts($request));
+        self::assertEquals($expectedResponse, $api->getPosts($request));
         $this->assertGetRequest('http://api.host/posts?sl_token=token-371110&page=5');
     }
 
-    private function getApiClient(HttpClient $httpClient): Client
+    public function testPageCount(): void
     {
-        return new Client(
+        $api = $this->getApiClient($this->createMock(HttpClient::class));
+        self::assertSame(10, $api->getPageCount());
+    }
+
+    private function getApiClient(HttpClient $httpClient): Api
+    {
+        return new Api(
             SerializerBuilder::build(),
             $httpClient,
             'http://api.host/'

@@ -2,13 +2,13 @@
 
 namespace PHPSTORM_META {
     override(
-        \App\SuperMetrics\Client::handleGetRequest(),
+        \App\SuperMetrics\Api::handleGetRequest(),
         map([
             '' => '@'
         ])
     );
     override(
-        \App\SuperMetrics\Client::handlePostRequest(),
+        \App\SuperMetrics\Api::handlePostRequest(),
         map([
             '' => '@'
         ])
