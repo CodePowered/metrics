@@ -2,7 +2,7 @@
 
 namespace App\SuperMetrics;
 
-class TokenResponse
+class TokenResponse extends ResponseEnvelope
 {
     private TokenResponseData $data;
 

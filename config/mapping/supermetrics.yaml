@@ -6,3 +6,16 @@ App\SuperMetrics\TokenResponseData:
     attributes:
         token:
             serialized_name: sl_token
+
+App\SuperMetrics\GetPostsRequest:
+    attributes:
+        token:
+            serialized_name: sl_token
+
+App\Provider\Post:
+    attributes:
+        authorName:
+            serialized_name: from_name
+        authorId:
+            serialized_name: from_id
+        createdTime:
