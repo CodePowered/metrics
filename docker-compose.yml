@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+    redis:
+        image: redis
+
+    php:
+        build: './docker/php/'
+        ports:
+            - 8001:80
+        volumes:
+            - './:/var/www/html/'
+        environment:
+            REDIS_HOST: redis

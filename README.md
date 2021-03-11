@@ -19,3 +19,14 @@ Libraries used only for development:
 ## Environment variables:
 - `REDIS_HOST` - to set Redis host other than `"localhost"`,
 - `REDIS_PORT` - to set Redis post other than `6379`.
+
+## Run statistics
+If local system has all required services, it is enough to run `statistics.php` script from the root directory.
+
+It can also be executing by:
+1. launching services with Docker Compose `docker-compose up`,
+1. and then visiting http://localhost:8001/statistics.php in a browser.
+
+## Automated tests
+Run automated tests by executing:
+- `vendor/bin/phpunit`
