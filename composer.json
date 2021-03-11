@@ -12,7 +12,10 @@
     "require": {
         "php": "^7.4",
         "ext-json": "*",
+        "ext-redis": "*",
         "guzzlehttp/guzzle": "^7.2",
+        "monolog/monolog": "^2.2",
+        "psr/log": "^1.1",
         "symfony/property-info": "^5.2",
         "symfony/serializer": "^5.2",
         "symfony/yaml": "^5.2"
